@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Smart Parking</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">  
+</head>
+<body class="bg-gray-100">
+<nav class="bg-white shadow-md">
+    <div class="container mx-auto py-4 px-6 lg:flex justify-between items-center">
+        
+        <h1 class="text-lg font-semibold text-gray-800">Smart Parking</h1>
+        
+        <nav class="">
+            <ul class="flex space-x-4">
+                <li><a href="{% url 'home' %}" class="text-gray-600 hover:text-gray-800">Home</a></li>
+                <li><a href="{% url 'about' %}" class="text-gray-600 hover:text-gray-800">About</a></li>
+                <li><a href="{% url 'service' %}" class="text-gray-600 hover:text-gray-800">Services</a></li>
+                <li><a href="{% url 'contact' %}" class="text-gray-600 hover:text-gray-800">Contact</a></li>
+            </ul>
+        </nav>
+        <div>
+            <a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-800">Login</a>
+            <span class="mx-2 text-gray-400">|</span>
+            <a href="{% url 'signup' %}" class="text-gray-600 hover:text-gray-800">Sign Up</a>
+        </div>
+    </div>
+</nav>
+<section class="py-16 px-6">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-semibold mb-8 text-center">Our Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="bg-white rounded-lg p-6 shadow-md service-item">
+                <h3 class="text-xl font-semibold mb-4">Parking Spot Reservation</h3>
+                <p class="text-gray-700">Allow users to reserve parking spots in advance, ensuring availability when they arrive at their destination.</p>
+            </div>
+            <div class="bg-white rounded-lg p-6 shadow-md service-item">
+                <h3 class="text-xl font-semibold mb-4">Valet Parking</h3>
+                <p class="text-gray-700">Offer valet parking services where users can drop off their vehicles at designated locations and have them parked by attendants.</p>
+            </div>
+           
+            <div class="bg-white rounded-lg p-6 shadow-md service-item">
+                <h3 class="text-xl font-semibold mb-4">Mobile App Integration</h3>
+                <p class="text-gray-700">Provide a mobile app for users to easily find, reserve, and pay for parking spots using their smartphones.</p>
+            </div>
+        
+        </div>
+    </div>
+</section>
+
+
+<footer class="bg-gray-800 text-white py-8 px-6">
+    <div class="container mx-auto text-center">
+        <p>&copy; 20XX Smart Parking. All rights reserved.</p>
+    </div>
+</footer>
+<script>
+    const serviceItems = document.querySelectorAll('.service-item');
+    serviceItems.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            item.classList.add('transform', 'scale-105', 'transition', 'duration-300', 'ease-in-out');
+        });
+        item.addEventListener('mouseout', () => {
+            item.classList.remove('transform', 'scale-105', 'transition', 'duration-300', 'ease-in-out');
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+<header class="bg-white shadow-md">
+    <div class="container mx-auto py-4 px-6 lg:flex justify-between items-center">
+        
+        <h1 class="text-lg font-semibold text-gray-800">Smart Parking</h1>
+        
+        <nav class="">
+            <ul class="flex space-x-4">
+                <li><a href="" class="text-gray-600 hover:text-gray-800">Home</a></li>
+                <li><a href="{% url 'about' %}" class="text-gray-600 hover:text-gray-800">About</a></li>
+                <li><a href="{% url 'service' %}" class="text-gray-600 hover:text-gray-800">Services</a></li>
+                <li><a href="{% url 'contact' %}" class="text-gray-600 hover:text-gray-800">Contact</a></li>
+            </ul>
+        </nav>
+        <div>
+            <a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-800">Login</a>
+            <span class="mx-2 text-gray-400">|</span>
+            <a href="{% url 'signup' %}" class="text-gray-600 hover:text-gray-800">Sign Up</a>
+        </div>
+    </div>
+</header>
+<section class="bg-blue-500 items-center ld:items-center text-white py-24 px-6"
+style="background-image: url('https://d2hucwwplm5rxi.cloudfront.net/wp-content/uploads/2022/10/27072334/How-to-Prepare-Your-Car-for-Long-term-Parking-_-Cover-21-10-22.jpg'); background-size: cover; height:auto;">
+    <div class="container mx-auto">
+        <h2 class="lg:text-8xl text-white font-semibold mb-4">Effortless Parking Solutions</h2>
+        <p class="text-xl text-white mb-8">Find, reserve, and pay for parking hassle-free with our smart parking system.</p>
+        <a href="#" class="bg-white text-black font-semibold py-2 px-6 rounded-full shadow-md hover:bg-blue-400 transition duration-300">Get Started</a>
+    </div>
+</section>
+<section class="py-16 px-6">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-semibold mb-8 text-center">Why Choose Smart Parking?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg p-6 shadow-md benefit">
+                <h3 class="text-xl font-semibold mb-4">Convenience</h3>
+                <p class="text-gray-700">Easily find available parking spots near your destination.</p>
+            </div>
+            <div class="bg-white rounded-lg p-6 shadow-md benefit">
+                <h3 class="text-xl font-semibold mb-4">Time-saving</h3>
+                <p class="text-gray-700">No more circling around looking for parking. Save time with our reservation system.</p>
+            </div>
+            <div class="bg-white rounded-lg p-6 shadow-md benefit">
+                <h3 class="text-xl font-semibold mb-4">Peace of Mind</h3>
+                <p class="text-gray-700">Enjoy a stress-free parking experience knowing you have a spot reserved.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-gray-200 py-16 px-6">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-semibold mb-8 text-center">How It Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center benefit">
+                <img src="{% static 'images/fspot.jpg' %}"  alt="fspot" class="mx-auto mb-4 h-48">
+                <h3 class="text-xl font-semibold mb-2">Find Parking</h3>
+                <p class="text-gray-700">Search for available parking spots near your destination.</p>
+            </div>
+            <div class="text-center benefit">
+                <img src="{% static 'images/reserve_park.jpg' %}" alt="Step 2" class="mx-auto mb-4 h-48">
+                <h3 class="text-xl font-semibold mb-2">Reserve Spot</h3>
+                <p class="text-gray-700">Reserve your parking spot in advance to guarantee availability.</p>
+            </div>
+            <div class="text-center benefit">
+                <img src="{% static 'images/pay_and_park.png' %}" alt="Step 3" class="mx-auto mb-4 h-48">
+                <h3 class="text-xl font-semibold mb-2">Pay and Park</h3>
+                <p class="text-gray-700">Pay for your parking securely and park hassle-free.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 px-6">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-semibold mb-8 text-center">What Our Customers Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <p class="text-gray-700">"I love how easy it is to find parking with Smart Parking. It saves me so much time!"</p>
+                <p class="text-gray-600 mt-4">- John Doe</p>
+            </div>
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <p class="text-gray-700">"Smart Parking has made my life so much easier. No more stress when going out!"</p>
+                <p class="text-gray-600 mt-4">- Jane Smith</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="bg-gray-800 text-white py-8 px-6">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Smart Parking. All rights reserved.<a href="{% url 'ahome' %}">hd</a></p>
+        
+    </div>
+</footer>
+
+<script>
+     const serviceItems = document.querySelectorAll('.benefit');
+    serviceItems.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            item.classList.add('transform', 'scale-105', 'transition', 'duration-300', 'ease-in-out');
+        });
+        item.addEventListener('mouseout', () => {
+            item.classList.remove('transform', 'scale-105', 'transition', 'duration-300', 'ease-in-out');
+        });
+    });
+</script>
+
+</body>
+</html>

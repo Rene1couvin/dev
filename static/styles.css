@@ -1,0 +1,55 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.profile-container {
+    width: 80%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.username {
+    font-size: 24px;
+    margin: 0;
+}
+
+.profile-info, .bio, .account-settings, .activity-feed, .friends, .achievements {
+    margin-bottom: 20px;
+}
+
+.profile-info h2, .bio h2, .account-settings h2, .activity-feed h2, .friends h2, .achievements h2 {
+    margin-bottom: 10px;
+}
+
+.account-settings a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.account-settings a:hover {
+    text-decoration: underline;
+}

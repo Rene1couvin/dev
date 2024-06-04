@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto py-4 px-6 lg:flex justify-between items-center">
+
+            <h1 class="text-lg font-semibold text-gray-800">Smart Parking</h1>
+
+            <nav class="">
+                <ul class="flex space-x-4">
+                    <li><a href="{% url 'home' %}" class="text-gray-600 hover:text-gray-800">Home</a></li>
+                    <li><a href="{% url 'about' %}" class="text-gray-600 hover:text-gray-800">About</a></li>
+                    <li><a href="{% url 'service' %}" class="text-gray-600 hover:text-gray-800">Services</a></li>
+                    <li><a href="{% url 'contact' %}" class="text-gray-600 hover:text-gray-800">Contact</a></li>
+                </ul>
+            </nav>
+            <div>
+                <a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-800">Login</a>
+                <span class="mx-2 text-gray-400">|</span>
+                <a href="{% url 'signup' %}" class="text-gray-600 hover:text-gray-800">Sign Up</a>
+            </div>
+        </div>
+        </heade>
+
+        <main class="container mx-auto px-4 py-8">
+            <section class="mb-8 ">
+                <h2 class="text-2xl font-bold mb-4">Contact Information</h2>
+                <div class="flex flex-wrap items-center ">
+                    <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                        <h3 class="text-lg font-semibold">Email</h3>
+                        <p>info@example.com</p>
+                    </div>
+                    <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                        <h3 class="text-lg font-semibold">Phone</h3>
+                        <p>+1 234 567 890</p>
+                    </div>
+                </div>
+            </section>
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Contact Form</h2>
+                <form>
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
+                        <input type="text" id="name" name="name"
+                            class="border border-gray-300 px-4 py-2 w-full rounded-md focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                        <input type="email" id="email" name="email"
+                            class="border border-gray-300 px-4 py-2 w-full rounded-md focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-gray-700 font-bold mb-2">Message</label>
+                        <textarea id="message" name="message"
+                            class="border border-gray-300 px-4 h-64 py-2 w-full rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Send
+                        Message</button>
+                    <button type="reset"
+                        class="bg-red-400 hover:bg-red-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Cancel</button>
+                </form>
+            </section>
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Our Location</h2>
+                <iframe width="600" height="450" frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.536995720228!2d30.045639!3d-1.978167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca6bc87b3fdab%3A0x22ccb56ddb2cc5aa!2sMinistry%20of%20Local%20Government!5e0!3m2!1sen!2srw!4v1590852651796!5m2!1sen!2srw"
+                    allowfullscreen></iframe>
+
+            </section>
+            <section>
+                <h2 class="text-2xl font-bold mb-4">Additional Information</h2>
+                <p>Our office hours are Monday to Friday, 8:30 AM - 5:00 PM.</p>
+
+            </section>
+        </main>
+        <footer class="bg-gray-800 text-white py-4">
+            <div class="container mx-auto text-center">
+                <p>&copy; 2024 Example Company. All rights reserved.</p>
+            </div>
+        </footer>
+</body>
+
+</html>

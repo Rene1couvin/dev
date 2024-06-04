@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Service Selection</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-blue-500 p-4 text-white">
+        <!-- Navigation content -->
+    </nav>
+
+    <div class="center">
+        <div class="container mx-auto p-6 bg-white rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold mb-6 text-center">Select Parking Service</h1>
+            <form id="parkingForm" class="space-y-4">
+                <div class="mb-4">
+                    <label for="province" class="block text-gray-700 font-bold mb-2">Province:</label>
+                    <select id="province" class="block w-full bg-white border border-gray-300 rounded py-2 px-4">
+                        <option value="">Select Province</option>
+                        <option value="Kigali">Kigali</option>
+                        <option value="Southern">Southern</option>
+                        <option value="Western">Western</option>
+                        <option value="Northern">Northern</option>
+                        <option value="Eastern">Eastern</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="district" class="block text-gray-700 font-bold mb-2">District:</label>
+                    <select id="district" class="block w-full bg-white border border-gray-300 rounded py-2 px-4" disabled>
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="sector" class="block text-gray-700 font-bold mb-2">Sector:</label>
+                    <select id="sector" class="block w-full bg-white border border-gray-300 rounded py-2 px-4" disabled>
+                        <option value="">Select Sector</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="parkingService" class="block text-gray-700 font-bold mb-2">Parking Service:</label>
+                    <select id="parkingService" class="block w-full bg-white border border-gray-300 rounded py-2 px-4" disabled>
+                        <option value="">Select Parking Service</option>
+                        <option value="Standard Parking">Standard Parking</option>
+                        <option value="VIP Parking">VIP Parking</option>
+                        <option value="Handicapped Parking">Handicapped Parking</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2">Parking Duration:</label>
+                    <div>
+                        <input type="radio" id="0-30-min" name="duration" value="0-30" class="mr-2">
+                        <label for="0-30-min">0 Min - 30 Min</label><br>
+                        <input type="radio" id="30-min-1-hr" name="duration" value="30-60" class="mr-2">
+                        <label for="30-min-1-hr">30 Min - 1 Hr</label><br>
+                        <input type="radio" id="1-3-hrs" name="duration" value="60-180" class="mr-2">
+                        <label for="1-3-hrs">1 Hr - 3 Hrs</label><br>
+                        <input type="radio" id="3-5-hrs" name="duration" value="180-300" class="mr-2">
+                        <label for="3-5-hrs">3 Hrs - 5 Hrs</label><br>
+                        <input type="radio" id="5-hrs-plus" name="duration" value="300-plus" class="mr-2">
+                        <label for="5-hrs-plus">5 Hrs +</label><br>
+                        <input type="radio" id="whole-day" name="duration" value="whole-day" class="mr-2">
+                        <label for="whole-day">Whole Day</label><br>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="price" class="block text-gray-700 font-bold mb-2">Price:</label>
+                    <span id="price" class="text-gray-700">Please select a duration</span>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded mt-4 w-full">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 p-4 text-white text-center mt-6">
+        <!-- Footer content -->
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const districts = {
+                Kigali: ["Gasabo", "Kicukiro", "Nyarugenge"],
+                Southern: ["Gisagara", "Huye", "Kamonyi", "Muhanga", "Nyamagabe", "Nyanza", "Nyaruguru", "Ruhango"],
+                Western: ["Karongi", "Ngororero", "Nyabihu", "Nyamasheke", "Rubavu", "Rusizi", "Rutsiro"],
+                Northern: ["Burera", "Gakenke", "Gicumbi", "Musanze", "Rulindo"],
+                Eastern: ["Bugesera", "Gatsibo", "Kayonza", "Kirehe", "Ngoma", "Nyagatare", "Rwamagana"]
+            };
+
+            const sectors = {
+                Gasabo: ["Bumbogo", "Gatsata", "Gikomero", "Gisozi", "Jabana", "Jali", "Kacyiru", "Kimihurura", "Kimironko", "Kinyinya", "Ndera", "Nduba", "Remera", "Rusororo", "Rutunga"],
+                Kicukiro: ["Gahanga", "Gatenga", "Gikondo", "Kagarama", "Kanombe", "Kicukiro", "Kigarama", "Masaka", "Niboye", "Nyarugunga"],
+                Nyarugenge: ["Gitega", "Kanyinya", "Kigali", "Kimisagara", "Mageragere", "Muhima", "Nyakabanda", "Nyamirambo", "Nyarugenge", "Rwezamenyo"],
+                Bugesera: ["Gashora", "Juru", "Kamabuye", "Ngeruka", "Ntarama", "Nyarugenge", "Nzige", "Rilima", "Ruhuha"],
+                Gatsibo: ["Gasange", "Gatsibo", "Kabarore", "Kageyo", "Kiramuruzi", "Kiziguro", "Muhura", "Murambi", "Ngarama", "Remera"],
+                Kayonza: ["Gahini", "Kabare", "Kabarondo", "Mukarange", "Murama", "Murundi", "Mwiri", "Ndego", "Nyamirama", "Rukara"],
+                Kirehe: ["Gatore", "Kigarama", "Kirehe", "Mahama", "Mpanga", "Musaza", "Nasho", "Nyamugali", "Nyarubuye", "Nyarutovu"],
+                Ngoma: ["Kazo", "Kibungo", "Mugesera", "Murama", "Mutenderi", "Ngera", "Ngoma", "Rukira", "Rurenge", "Sake"],
+                Nyagatare: ["Gatunda", "Karangazi", "Katabagemu", "Kiyombe", "Matimba", "Mimuli", "MucundanzI", "Musheli", "Nyagatare", "Rukomo"],
+                Rwamagana: ["Gahengeri", "Kabare", "Kigabiro", "Muhazi", "Munyiginya", "Ntunga", "Rubona", "Rukira", "Rwamagana", "Rwimbogo"],
+                Burera: ["Bungwe", "Butaro", "Cyanika", "Cyeru", "Gahunga", "Gatebe", "Gitovu", "Kagogo", "Kinoni", "Kinyababa", "Kivuye", "Nemba", "Rugarama", "Rugengabari", "Ruhunde", "Rusarabuye"],
+                Gakenke: ["Busengo", "Coko", "Cyabingo", "Gakenke", "Gashenyi", "Janji", "Kamubuga", "Karambo", "Kivuruga", "Mataba", "Mugunga", "Muhondo", "Muyongwe", "Muzo", "Nemba", "Ruli", "Rusasa", "Rushashi"],
+                Gicumbi: ["Bukure", "Bwisige", "Byumba", "Cyumba", "Giti", "Kageyo", "Kaniga", "Manyagiro", "Miyove", "Mukarange", "Muko", "Mutete", "Nyamiyaga", "Nyankenke", "Rubaya", "Rukomo", "Rushaki", "Rutare", "Ruvune", "Rwamiko"],
+                Musanze: ["Busogo", "Cyuve", "Gacaca", "Gashaki", "Kimonyi", "Kinigi", "Musanze", "Muhoza", "Nkotsi", "Nyange", "Remera", "Rwaza", "Shingiro"],
+                Rulindo: ["Base", "Burega", "Bushoki", "Buyoga", "Cyinzuzi", "Cyungo", "Kinihira", "Kisaro", "Masoro", "Mbogo", "Murambi", "Ntarabana", "Rukozo", "Rusiga", "Shyorongi", "Tumba"],
+                Karongi: ["Bwishyura", "Gitesi", "Gishyita", "Gashari", "Murundi", "Mutuntu", "Murambi", "Rugabano", "Rubengera", "Ruganda", "Rutsiro", "Twumba"],
+                Ngororero: ["Bwira", "Gatumba", "Hindiro", "Kabaya", "Kageyo", "Kavumu", "Matyazo", "Muhanda", "Muhororo", "Ndaro", "Ngororero", "Nyange", "Sovu"],
+                Nyabihu: ["Bigogwe", "Jenda", "Jomba", "Karago", "Kintobo", "Mukamira", "Muringa", "Rambura", "Rugera", "Rurembo", "Shyira"],
+                Nyamasheke: ["Bushekeri", "Bushenge", "Cyato", "Gihombo", "Kagano", "Kanjongo", "Karambi", "Karengera", "Kirimbi", "Macuba", "Mahembe", "Nyabitekeri", "Rangiro", "Ruharambuga", "Shangi"],
+                Rubavu: ["Bugeshi", "Busasamana", "Cyanzarwe", "Gisenyi", "Kanama", "Kanzenze", "Mudende", "Nyakiliba", "Nyamyumba", "Nyundo", "Rubavu", "Rugerero"],
+                Rusizi: ["Bugarama", "Butare", "Bweyeye", "Gashonga", "Giheke", "Gihundwe", "Gikundamvura", "Gitambi", "Kamembe", "Muganza", "Mururu", "Nkanka", "Nkombo", "Nkungu", "Nyakabuye"],
+                Rutsiro: ["Boneza", "Gihango", "Kigeyo", "Kivumu", "Manihira", "Mushonyi", "Mukura", "Murunda", "Musasa", "Mushubati", "Nyabirasi", "Ruhango", "Rusebeya"],
+                Huye : ["Butare", "Gishamvu", "Huye", "Karama", "Maraba", "Mbazi", "Ngoma", "Ruhashya", "Tumba"],
+                Kamonyi : ["Kamonyi", "Kayenzi", "Mugina", "Musambira", "Runda"],
+                Muhanga : ["Cyeza", "Kabacuzi", "Kiyumba", "Muhanga", "Nyabinoni", "Rongi"],
+                Nyamagabe : ["Kaduha", "Kibirizi", "Kibumbwe", "Kitabi", "Mukoma", "Mukingo", "Nyagisozi", "Ruheru", "Rusenge", "Tare"],
+                Nyanza : ["Busasamana", "Busoro", "Kibirizi", "Kigoma", "Mukingo", "Nyagisozi", "Rusatira", "Shyogwe"],
+                Nyaruguru : ["Buhanda", "Cyahinda", "Kibeho", "Kivu", "Ngera", "Nyabimata", "Nyaruguru"],
+                Ruhango : ["Bweramana", "Kinihira", "Kinazi", "Kinihira", "Mbuye", "Ntongwe", "Ruhango", "Shyanda Sector"],
+                Gisagara : [" Gikonko", "Gishubi", "Kansi", "Kibilizi", "Kigembe", "Mamba", "Muganza", "Mugombwa", "Mukindo", "Musha", "Ndora", "Nyanza", "Save"]
+            };
+
+            const priceTable = {
+                "Standard Parking": {
+                    "0-30": 500,
+                    "30-60": 1000,
+                    "60-180": 1500,
+                    "180-300": 2000,
+                    "300-plus": 2500,
+                    "whole-day": 4000
+                },
+                "VIP Parking": {
+                    "0-30": 1000,
+                    "30-60": 2000,
+                    "60-180": 3000,
+                    "180-300": 4000,
+                    "300-plus": 5000,
+                    "whole-day": 8000
+                },
+                "Handicapped Parking": {
+                    "0-30": 300,
+                    "30-60": 600,
+                    "60-180": 900,
+                    "180-300": 1200,
+                    "300-plus": 1500,
+                    "whole-day": 2000
+                }
+            };
+
+            const provinceSelect = document.getElementById('province');
+            const districtSelect = document.getElementById('district');
+            const sectorSelect = document.getElementById('sector');
+            const parkingServiceSelect = document.getElementById('parkingService');
+            const durationRadios = document.querySelectorAll('input[name="duration"]');
+            const priceSpan = document.getElementById('price');
+
+            function populateDropdown(selectElement, options) {
+                selectElement.innerHTML = '<option value="">Select</option>';
+                for (let option of options) {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    selectElement.appendChild(optionElement);
+                }
+            }
+
+            provinceSelect.addEventListener('change', function () {
+                const selectedProvince = this.value;
+                const districtsInProvince = districts[selectedProvince];
+                populateDropdown(districtSelect, districtsInProvince);
+                districtSelect.disabled = !districtsInProvince;
+                sectorSelect.disabled = true;
+                parkingServiceSelect.disabled = true;
+                sectorSelect.innerHTML = '<option value="">Select Sector</option>';
+                priceSpan.textContent = 'Please select a duration';
+            });
+
+            districtSelect.addEventListener('change', function () {
+                const selectedDistrict = this.value;
+                const sectorsInDistrict = sectors[selectedDistrict];
+                populateDropdown(sectorSelect, sectorsInDistrict);
+                sectorSelect.disabled = !sectorsInDistrict;
+                parkingServiceSelect.disabled = !sectorsInDistrict;
+                priceSpan.textContent = 'Please select a duration';
+            });
+
+            parkingServiceSelect.addEventListener('change', function () {
+                updatePrice();
+            });
+
+            durationRadios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    updatePrice();
+                });
+            });
+
+            function updatePrice() {
+                const selectedParkingService = parkingServiceSelect.value;
+                const selectedDuration = document.querySelector('input[name="duration"]:checked');
+                if (selectedParkingService && selectedDuration) {
+                    const price = priceTable[selectedParkingService][selectedDuration.value];
+                    priceSpan.textContent = `Price: ${price} RWF`;
+                } else {
+                    priceSpan.textContent = 'Please select a duration';
+                }
+            }
+
+            districtSelect.disabled = true;
+            sectorSelect.disabled = true;
+            parkingServiceSelect.disabled = true;
+        });
+    </script>
+</body>
+
+</html>

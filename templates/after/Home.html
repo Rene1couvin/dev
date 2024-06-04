@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking</title>
+    <meta content="{% static 'images/park.png'%}" itemprop="image">
+    {% load static %}
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+
+    <header class="bg-white w-full fixed shadow-md">
+        <div class="container mx-auto  px-6 lg:flex justify-between items-center">
+
+            <h1 class="text-lg font-semibold text-gray-800">Smart Parking</h1>
+
+            <nav class="">
+                <ul class="flex space-x-4">
+                    <li><a href="" class="text-gray-600 hover:text-gray-800">Home</a></li>
+                    <li><a href="#about" class="text-gray-600 hover:text-gray-800">About</a></li>
+                    <li><a href="#our_services" class="text-gray-600 hover:text-gray-800">Services</a></li>
+                    <li><a href="#contact_us" class="text-gray-600 hover:text-gray-800">Contact</a></li>
+                </ul>
+            </nav>
+            <div>
+                <button class="pt-2" id="toggleFormBtn" onclick="toggleForm()"> <img src="{% static 'images/DSC_9360~2.jpg' %}"
+                        class="h-8 w-8 rounded-full" alt="">
+                    <p>{{ user.username }}</p>
+                </button>
+
+            </div>
+        </div>
+    </header>
+    <div id="abcde" class="pt-24 z-0 hidden">
+        <button><a href="{% url 'profile' %}" class="text-gray-600 hover:text-gray-800"> Edit Profile</a></button>
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="text-gray-600 hover:text-gray-800">Log Out</button>
+        </form>
+
+    </div>
+
+    <section class="bg-blue-500 text-white py-24 px-6"
+        style="background-image: url('https://d2hucwwplm5rxi.cloudfront.net/wp-content/uploads/2022/10/27072334/How-to-Prepare-Your-Car-for-Long-term-Parking-_-Cover-21-10-22.jpg'); background-size: cover; height:38rem;">
+        <div class="container mx-auto">
+            <h2 class="text-8xl text-white font-semibold pt-24 mb-4">Effortless Parking Solutions</h2>
+            <p class="text-xl text-white mb-8">Find, reserve, and pay for parking hassle-free with our smart parking
+                system.</p>
+            <a href="reserve"
+                class="bg-white text-black font-semibold py-2 px-6 rounded-full shadow-md hover:bg-blue-400 transition duration-300">Get
+                Started</a>
+        </div>
+    </section>
+
+    <section class="py-16 px-24">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 text-center">Why Choose Smart Parking?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-8">
+                <div class="bg-white rounded-lg p-6 shadow-md benefit">
+                    <h3 class="text-xl font-semibold mb-4">Convenience</h3>
+                    <p class="text-gray-700">Easily find available parking spots near your destination.</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-md benefit">
+                    <h3 class="text-xl font-semibold mb-4">Time-saving</h3>
+                    <p class="text-gray-700">No more circling around looking for parking. Save time with our reservation
+                        system.</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-md benefit">
+                    <h3 class="text-xl font-semibold mb-4">Peace of Mind</h3>
+                    <p class="text-gray-700">Enjoy a stress-free parking experience knowing you have a spot reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-200 py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 text-center">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center benefit">
+                    <img src="https://d2hucwwplm5rxi.cloudfront.net/wp-content/uploads/2023/12/28091833/Find-a-Parking-Spot-Online-in-Dubai-_-Cover-27-12-23.jpg"
+                        alt="fspot" class="mx-auto mb-4 h-48">
+                    <h3 class="text-xl font-semibold mb-2">Find Parking</h3>
+                    <p class="text-gray-700">Search for available parking spots near your destination.</p>
+                </div>
+                <div class="text-center benefit">
+                    <img src="https://www.parkonic.com/images/space_share_banner.jpg" alt="Step 2"
+                        class="mx-auto mb-4 h-48">
+                    <h3 class="text-xl font-semibold mb-2">Reserve Spot</h3>
+                    <p class="text-gray-700">Reserve your parking spot in advance to guarantee availability.</p>
+                </div>
+                <div class="text-center benefit">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPHbPj1o09JUo6H9OG1OnA77PpF9Fu6c0Umk-WxTiqojoPZMCwdrWaj6iUT2vpwMJPjyY&usqp=CAU"
+                        alt="Step 3" class="mx-auto mb-4 h-48">
+                    <h3 class="text-xl font-semibold mb-2">Pay and Park</h3>
+                    <p class="text-gray-700">Pay for your parking securely and park hassle-free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 text-center">What Our Customers Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg p-6 shadow-md">
+                    <p class="text-gray-700">"I love how easy it is to find parking with Smart Parking. It saves me so
+                        much time!"</p>
+                    <p class="text-gray-600 mt-4">- John Doe</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-md">
+                    <p class="text-gray-700">"Smart Parking has made my life so much easier. No more stress when going
+                        out!"</p>
+                    <p class="text-gray-600 mt-4">- Jane Smith</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- About div  -->
+
+
+
+    <div id="about">
+        <div class="bg-gray-100"></div>
+        <section class="py-16 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-semibold mb-8 text-center">About Smart Parking</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <div class="benefit">
+                        <h3 class="text-xl font-semibold mb-4 ">Company Overview</h3>
+                        <p class="text-gray-700">Smart Parking is a leading provider of innovative parking solutions.
+                            Founded in 2024, our mission is to revolutionize the parking industry by leveraging
+                            technology to create efficient, convenient, and sustainable parking experiences for
+                            everyone.</p>
+                    </div>
+                    <div class="benefit">
+                        <h3 class="text-xl font-semibold mb-4">Mission and Values</h3>
+                        <p class="text-gray-700">At Smart Parking, our mission is to...</p>
+                        <p id="missionStatement" class="text-gray-700">Deliver exceptional parking experiences that
+                            enhance urban mobility, reduce environmental impact, and improve quality of life.</p>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <h3 class="text-2xl font-semibold mb-4">Meet Our Team</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                        <div class="bg-white rounded-lg p-6 shadow-md">
+                            <img src="{% static 'images/DSC_9360~2.jpg' %}" class="w-24 h-24 mb-4 rounded-full">
+                            <h4 class="text-lg font-semibold mb-2">BANA RUSIZANA Rene Francis</h4>
+                            <p class="text-gray-700">Co-Founder & CEO</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-6 shadow-md">
+                            <img src="{% static 'images/DSC_9360~2.jpg' %}" alt="Team Member 2"
+                                class="w-24 h-24 mb-4 rounded-full">
+                            <h4 class="text-lg font-semibold mb-2">IRADUKUNDA Prince</h4>
+                            <p class="text-gray-700">Co-Founder & CTO</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-6 shadow-md">
+                            <img src="{% static 'images/1A1A4557~2.jpg' %}" alt="Team Member 3"
+                                class="w-24 h-24 mb-4 rounded-full">
+                            <h4 class="text-lg font-semibold mb-2">BWIZA Blandine</h4>
+                            <p class="text-gray-700">Head of Operations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <!--services-->
+    <div id="our_services">
+        <div class="bg-gray-200"></div>
+        <section class="py-16 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-semibold mb-8 text-center">Our Services</h2>
+                <div class="grid grid-cols-1 px-24 md:grid-cols-2 gap-24">
+                    <div class="benefit">
+                        <h3 class="text-xl font-semibold mb-4">Parking Reservation System</h3>
+                        <p class="text-gray-700">Reserve a parking spot in advance through our user-friendly mobile app
+                            or website.</p>
+                    </div>
+                    <div class="benefit">
+                        <h3 class="text-xl font-semibold mb-4">Real-time Availability</h3>
+                        <p class="text-gray-700">Get real-time updates on parking availability at your destination.</p>
+                    </div>
+                    <div class="benefit">
+                        <h3 class="text-xl font-semibold mb-4">Secure Payment</h3>
+                        <p class="text-gray-700">Pay securely through our platform and enjoy a seamless parking
+                            experience.</p>
+                    </div>
+                    <div class="benefit">
+                        <h3 class="text-xl font-semibold mb-4">Customer Support</h3>
+                        <p class="text-gray-700">Our dedicated support team is available 24/7 to assist you with any
+                            issues or questions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- contact us -->
+
+    <section id="contact_us">
+
+        <body class="bg-blue-400">
+            <main class="container mx-auto px-4 py-4  ">
+                <div id="contact_us">
+                    <div class="bg-blue-400"></div>
+                    <section class="py-16 px-6">
+                        <div class="container mx-auto">
+                            <h2 class="text-3xl font-semibold mb-8 text-center">Contact Us</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="benefit">
+                                    <h3 class="text-xl font-semibold mb-4">Get in Touch</h3>
+                                    <p class="text-gray-700">Have questions or feedback? Reach out to us using the form
+                                        below or
+                                        through our contact details.</p>
+                                </div>
+                                <div>
+                                    <form action="#" method="POST" class="bg-white rounded-lg p-6 shadow-md">
+                                        <div class="mb-4">
+                                            <label for="name"
+                                                class="block text-gray-700 font-semibold mb-2">Name</label>
+                                            <input type="text" id="name" name="name"
+                                                class="w-full border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-500">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="email"
+                                                class="block text-gray-700 font-semibold mb-2">Email</label>
+                                            <input type="email" id="email" name="email"
+                                                class="w-full border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-500">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="message"
+                                                class="block text-gray-700 font-semibold mb-2">Message</label>
+                                            <textarea id="message" name="message"
+                                                class="w-full border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-500"></textarea>
+                                        </div>
+                                        <button type="submit"
+                                            class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300">Send
+                                            Message</button>
+                                        <button type="reset"
+                                            class="bg-red-400 hover:bg-red-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                            Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Our Location</h2>
+                    <iframe width="100%" height="400" frameborder="0" style="border:0;"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15950.120679370404!2d30.0885032!3d-1.9405468!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6261e51cfaaa7f7d!2sMinistry%20of%20Agriculture%20and%20Animal%20Resources!5e0!3m2!1sen!2srw!4v1574848083116!5m2!1sen!2srw"
+                        allowfullscreen>
+                    </iframe>
+                </section>
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">Additional Information</h2>
+                    <p>Our office hours are Monday to Friday, 8:30 AM - 5:00 PM.</p>
+
+                </section>
+            </main>
+    </section>
+
+
+
+
+
+
+
+    <footer class="bg-gray-800 text-white py-8 px-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Smart Parking. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+    <script>
+        const serviceItems = document.querySelectorAll('.benefit', '.service-item',);
+        serviceItems.forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.classList.add('transform', 'scale-105', 'transition', 'duration-300', 'ease-in-out');
+            });
+            item.addEventListener('mouseout', () => {
+                item.classList.remove('transform', 'scale-105', 'transition', 'duration-300', 'ease-in-out');
+            });
+        });
+
+        function toggleForm() {
+            var form = document.getElementById("abcde");
+            form.style.display = (form.style.display == "none") ? "block" : "none";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

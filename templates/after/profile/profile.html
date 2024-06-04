@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        
+        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+            <div class="flex items-center">
+                <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="w-20 h-20 rounded-full mr-4">
+                <div>
+                    <h2 class="text-xl font-semibold" id="username-display">Username</h2>
+                    <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('profile-picture-form')">Edit</button>
+                </div>
+            </div>
+            <form id="profile-picture-form" class="hidden mt-4" onsubmit="updateProfilePicture(event)">
+                <input type="file" class="border p-2 rounded w-full" id="profile-picture-input">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+            </form>
+        </div>
+
+        <!-- Basic Information Section -->
+        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+            <h3 class="text-lg font-semibold">Basic Information</h3>
+            <p id="full-name-display">Full Name: John Doe</p>
+            <p id="email-display">Email: john.doe@example.com</p>
+            <p id="phone-display">Phone: +1234567890</p>
+            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('basic-info-form')">Edit</button>
+            <form id="basic-info-form" class="hidden mt-4" onsubmit="updateBasicInfo(event)">
+                <input type="text" class="border p-2 rounded w-full mb-2" id="full-name-input" placeholder="Full Name">
+                <input type="email" class="border p-2 rounded w-full mb-2" id="email-input" placeholder="Email">
+                <input type="tel" class="border p-2 rounded w-full mb-2" id="phone-input" placeholder="Phone">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+            </form>
+        </div>
+
+        <!-- Bio Section -->
+        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+            <h3 class="text-lg font-semibold">Bio</h3>
+            <p id="bio-display">A short bio or description about the user.</p>
+            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('bio-form')">Edit</button>
+            <form id="bio-form" class="hidden mt-4" onsubmit="updateBio(event)">
+                <textarea class="border p-2 rounded w-full mb-2" id="bio-input" placeholder="Bio"></textarea>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+            </form>
+        </div>
+
+        <!-- Personal Details Section -->
+        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+            <h3 class="text-lg font-semibold">Personal Details</h3>
+            <p id="dob-display">Date of Birth: 01/01/1990</p>
+            <p id="gender-display">Gender: Male</p>
+            <p id="location-display">Location: New York, USA</p>
+            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('personal-details-form')">Edit</button>
+            <form id="personal-details-form" class="hidden mt-4" onsubmit="updatePersonalDetails(event)">
+                <input type="date" class="border p-2 rounded w-full mb-2" id="dob-input" placeholder="Date of Birth">
+                <select class="border p-2 rounded w-full mb-2" id="gender-input">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <input type="text" class="border p-2 rounded w-full mb-2" id="location-input" placeholder="Location">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+            </form>
+        </div>
+
+        <!-- Account Settings Section -->
+        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+            <h3 class="text-lg font-semibold">Account Settings</h3>
+            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('password-form')">Change Password</button>
+            <form id="password-form" class="hidden mt-4" onsubmit="updatePassword(event)">
+                <input type="password" class="border p-2 rounded w-full mb-2" id="password-input" placeholder="New Password">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+            </form>
+
+            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 mt-2" onclick="toggleForm('2fa-form')">Manage 2FA</button>
+            <form id="2fa-form" class="hidden mt-4" onsubmit="update2FA(event)">
+                <p>Two-Factor Authentication settings...</p>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+            </form>
+
+            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 mt-2" onclick="toggleForm('privacy-form')">Privacy Settings</button>
+            <form id="privacy-form" class="hidden mt-4" onsubmit="updatePrivacySettings(event)">
+                <p>Privacy settings...</p>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+            </form>
+        </div>
+
+        <!-- Other sections like Activity Feed, Friends, Achievements, etc. can be added similarly -->
+    </div>
+
+    <script>
+        function toggleForm(formId) {
+            const form = document.getElementById(formId);
+            if (form.classList.contains('hidden')) {
+                form.classList.remove('hidden');
+            } else {
+                form.classList.add('hidden');
+            }
+        }
+
+        function updateProfilePicture(event) {
+            event.preventDefault();
+            // Implement the logic to update the profile picture
+            document.getElementById('profile-picture-form').classList.add('hidden');
+        }
+
+        function updateBasicInfo(event) {
+            event.preventDefault();
+            document.getElementById('full-name-display').innerText = `Full Name: ${document.getElementById('full-name-input').value}`;
+            document.getElementById('email-display').innerText = `Email: ${document.getElementById('email-input').value}`;
+            document.getElementById('phone-display').innerText = `Phone: ${document.getElementById('phone-input').value}`;
+            document.getElementById('basic-info-form').classList.add('hidden');
+        }
+
+        function updateBio(event) {
+            event.preventDefault();
+            document.getElementById('bio-display').innerText = document.getElementById('bio-input').value;
+            document.getElementById('bio-form').classList.add('hidden');
+        }
+
+        function updatePersonalDetails(event) {
+            event.preventDefault();
+            document.getElementById('dob-display').innerText = `Date of Birth: ${document.getElementById('dob-input').value}`;
+            document.getElementById('gender-display').innerText = `Gender: ${document.getElementById('gender-input').value}`;
+            document.getElementById('location-display').innerText = `Location: ${document.getElementById('location-input').value}`;
+            document.getElementById('personal-details-form').classList.add('hidden');
+        }
+
+        function updatePassword(event) {
+            event.preventDefault();
+            // Implement the logic to update the password
+            document.getElementById('password-form').classList.add('hidden');
+        }
+
+        function update2FA(event) {
+            event.preventDefault();
+            // Implement the logic to update 2FA settings
+            document.getElementById('2fa-form').classList.add('hidden');
+        }
+
+        function updatePrivacySettings(event) {
+            event.preventDefault();
+            // Implement the logic to update privacy settings
+            document.getElementById('privacy-form').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
