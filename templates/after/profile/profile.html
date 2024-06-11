@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,97 +10,251 @@
         .hidden {
             display: none;
         }
+
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-right: 12px;
+            padding-left: 12px;
+        }
+
+        .form-section {
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .form-section h3 {
+            color: #1E3A8A;
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .form-button {
+            background-color: #1E3A8A;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-button:hover {
+            background-color: #2D3A8A;
+        }
+
+        .form-button.secondary {
+            background-color: #F3F4F6;
+            color: #4B5563;
+            margin-left: 10px;
+        }
+
+        .form-button.secondary:hover {
+            background-color: #E5E7EB;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #CBD5E0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #CBD5E0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%231E3A8A"><path d="M7 7l3-3 3 3m0 6l-3 3-3-3" /></svg>');
+            background-repeat: no-repeat;
+            background-position-x: calc(100% - 15px);
+            background-position-y: center;
+            background-size: 15px;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 8px 12px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+    .dropdown-content button {
+        color: black;
+        padding: 8px 12px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content button:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;}
     </style>
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto p-4">
-        
-        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-            <div class="flex items-center">
-                <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="w-20 h-20 rounded-full mr-4">
-                <div>
-                    <h2 class="text-xl font-semibold" id="username-display">Username</h2>
-                    <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('profile-picture-form')">Edit</button>
+
+<body class="bg-gradient-to-r from-blue-500 to-cyan-100 mx-auto">
+    <header class="bg-gradient-to-r from-blue-500 to-cyan-100 w-full shadow-md">
+        <div class="container mx-auto px-6 lg:flex justify-between items-center sm:flex">
+            <a href="{% url 'ahome' %}"><button>
+
+            <h1 class="text-xl font-semibold text-gray-800 bg-blue-400 rounded-full p-2 ">Smart Parking</h1></button></a>
+
+            <!-- Toggle Button for Navigation Links -->
+            <button id="toggleBtn" class="lg:hidden focus:outline-none">
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="navLinks" class=" lg:flex lg:items-center">
+                <ul class="flex space-x-4">
+                    <li><a href="" class="text-gray-600 hover:text-gray-800 bg-gray-400 rounded-full p-2">Home</a></li>
+                    <li><a href="#about" class="text-gray-600 hover:text-gray-800 bg-gray-400 rounded-full p-2">About</a></li>
+                    <li><a href="#our_services" class="text-gray-600 hover:text-gray-800 bg-gray-400 rounded-full p-2">Services</a></li>
+                    <li><a href="#contact_us" class="text-gray-600 hover:text-gray-800 bg-gray-400 rounded-full p-2">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div  class="dropdown lg:block hidden">
+                
+                <button class="bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">
+                    <p>{{ user.username }}</p>
+                </button>
+                <div class="dropdown-content bg-gradient-to-r from-blue-200 to-cyan-100">
+                    <a href="{% url 'profile' %}" class="text-gray-600 hover:text-gray-800"> Edit Profile</a>
+                    {% csrf_token %}
+                    <button type="submit" class="text-gray-600 hover:text-gray-800">Log Out</button>
                 </div>
+
             </div>
-            <form id="profile-picture-form" class="hidden mt-4" onsubmit="updateProfilePicture(event)">
-                <input type="file" class="border p-2 rounded w-full" id="profile-picture-input">
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
-            </form>
         </div>
+    </header>
 
-        <!-- Basic Information Section -->
-        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-            <h3 class="text-lg font-semibold">Basic Information</h3>
-            <p id="full-name-display">Full Name: John Doe</p>
-            <p id="email-display">Email: john.doe@example.com</p>
-            <p id="phone-display">Phone: +1234567890</p>
-            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('basic-info-form')">Edit</button>
-            <form id="basic-info-form" class="hidden mt-4" onsubmit="updateBasicInfo(event)">
-                <input type="text" class="border p-2 rounded w-full mb-2" id="full-name-input" placeholder="Full Name">
-                <input type="email" class="border p-2 rounded w-full mb-2" id="email-input" placeholder="Email">
-                <input type="tel" class="border p-2 rounded w-full mb-2" id="phone-input" placeholder="Phone">
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
-            </form>
+    <div class="form-container bg-gradient-to-r from-blue-500 to-cyan-100 py-12">
+       
+
+        <div class="ld:flex md:flex md:space-x-2 ld:space-x-2 ">
+            <!-- Basic Information Section -->
+            <div class="form-section w-1/2">
+                <h3>Basic Information</h3>
+                <p>First Name: {{ user.first_name}}</p>
+                <p>Last Name: {{ user.last_name}}</p>
+                <p>Email:{{ user.email}} </p>
+                <p>Phone:{{ user.phone}} </p>
+                <button class="form-button" onclick="toggleForm('basic-info-form')">Edit</button>
+                <form id="basic-info-form" class="hidden mt-4" onsubmit="updateBasicInfo(event)">
+                    <input type="text" class="form-input" id="first-name-input" placeholder="First Name">
+                    <input type="text" class="form-input" id="last-name-input" placeholder="Last Name">
+                    <input type="email" class="form-input" id="email-input" placeholder="Email">
+                    <input type="tel" class="form-input" id="phone-input" placeholder="Phone">
+                    <button type="submit" class="form-button">Update</button>
+                    <button type="button" class="form-button secondary"
+                        onclick="toggleForm('basic-info-form')">Cancel</button>
+                </form>
+            </div>
+
+            <!-- Bio Section -->
+            <div class="form-section w-1/2">
+                <h3>Bio</h3>
+                <p>A short bio or description about the user.</p>
+                <button class="form-button" onclick="toggleForm('bio-form')">Edit</button>
+                <form id="bio-form" class="hidden mt-4" onsubmit="updateBio(event)">
+                    <textarea class="form-input" id="bio-input" placeholder="Bio"></textarea>
+                    <button type="submit" class="form-button">Update</button>
+                    <button type="button" class="form-button secondary" onclick="toggleForm('bio-form')">Cancel</button>
+                </form>
+            </div>
         </div>
-
-        <!-- Bio Section -->
-        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-            <h3 class="text-lg font-semibold">Bio</h3>
-            <p id="bio-display">A short bio or description about the user.</p>
-            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('bio-form')">Edit</button>
-            <form id="bio-form" class="hidden mt-4" onsubmit="updateBio(event)">
-                <textarea class="border p-2 rounded w-full mb-2" id="bio-input" placeholder="Bio"></textarea>
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
-            </form>
-        </div>
-
         <!-- Personal Details Section -->
-        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-            <h3 class="text-lg font-semibold">Personal Details</h3>
-            <p id="dob-display">Date of Birth: 01/01/1990</p>
-            <p id="gender-display">Gender: Male</p>
-            <p id="location-display">Location: New York, USA</p>
-            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('personal-details-form')">Edit</button>
+        
+        
+        <div class="ld:flex md:flex md:space-x-2 d:space-x-4">
+        <div class="form-section w-1/3">
+            <h3>Personal Details</h3>
+            <p>Date of Birth: 01/01/1990</p>
+            <p>Gender: Male</p>
+            <p>Location: New York, USA</p>
+            <button class="form-button" onclick="toggleForm('personal-details-form')">Edit</button>
             <form id="personal-details-form" class="hidden mt-4" onsubmit="updatePersonalDetails(event)">
-                <input type="date" class="border p-2 rounded w-full mb-2" id="dob-input" placeholder="Date of Birth">
-                <select class="border p-2 rounded w-full mb-2" id="gender-input">
+                <input type="date" class="form-input" id="dob-input" placeholder="Date of Birth">
+                <select class="form-select" id="gender-input">
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                 </select>
-                <input type="text" class="border p-2 rounded w-full mb-2" id="location-input" placeholder="Location">
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+                <input type="text" class="form-input" id="location-input" placeholder="Location">
+                <button type="submit" class="form-button">Update</button>
+                <button type="button" class="form-button secondary"
+                    onclick="toggleForm('personal-details-form')">Cancel</button>
             </form>
         </div>
 
         <!-- Account Settings Section -->
-        <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-            <h3 class="text-lg font-semibold">Account Settings</h3>
-            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="toggleForm('password-form')">Change Password</button>
+
+        <div class="form-section w-2/3">
+            <h3>Account Settings</h3>
+            <button class="form-button" onclick="toggleForm('password-form')">Change Password</button>
             <form id="password-form" class="hidden mt-4" onsubmit="updatePassword(event)">
-                <input type="password" class="border p-2 rounded w-full mb-2" id="password-input" placeholder="New Password">
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+                <input type="password">
+                <input type="password" class="form-input" id="password-input" placeholder="New Password">
+                <button type="submit" class="form-button">Update</button>
+                <button type="button" class="form-button secondary"
+                    onclick="toggleForm('password-form')">Cancel</button>
             </form>
 
-            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 mt-2" onclick="toggleForm('2fa-form')">Manage 2FA</button>
+            <button class="form-button" onclick="toggleForm('2fa-form')">Manage 2FA</button>
             <form id="2fa-form" class="hidden mt-4" onsubmit="update2FA(event)">
                 <p>Two-Factor Authentication settings...</p>
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+                <button type="submit" class="form-button">Update</button>
+                <button type="button" class="form-button secondary" onclick="toggleForm('2fa-form')">Cancel</button>
             </form>
 
-            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 mt-2" onclick="toggleForm('privacy-form')">Privacy Settings</button>
+            <button class="form-button" onclick="toggleForm('privacy-form')">Privacy Settings</button>
             <form id="privacy-form" class="hidden mt-4" onsubmit="updatePrivacySettings(event)">
                 <p>Privacy settings...</p>
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Update</button>
+                <button type="submit" class="form-button">Update</button>
+                <button type="button" class="form-button secondary" onclick="toggleForm('privacy-form')">Cancel</button>
             </form>
         </div>
-
-        <!-- Other sections like Activity Feed, Friends, Achievements, etc. can be added similarly -->
+    </div>
     </div>
 
     <script>
+        
+        const toggleBtn = document.getElementById('toggleBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        toggleBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('hidden');
+        });
+   
         function toggleForm(formId) {
             const form = document.getElementById(formId);
             if (form.classList.contains('hidden')) {
@@ -156,4 +311,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -1,0 +1,43 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Places</title>
+</head>
+<body>
+    <nav>
+        <!-- Navigation bar -->
+    </nav>
+    <div>
+        <p>dsdsd</p>
+        <a href="{% url 'reserve' %}"><button>Reserve</button></a>
+    </div>
+    <div>
+        <!-- Parking place cards -->
+        {% for place in parking_places %}
+            <div>
+                
+                <h2>{{ place.name }}</h2>
+                <img src="{{ place.images.url }}" alt="{{ place.name }}">
+                <p>{{ place.description }}</p>
+                <p>Available Spots: {{ place.available_spots }}</p>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_admin %}
+                        <!-- Admin actions -->
+                        <a href="{% url 'add_parking_place' %}">Add Parking Place</a>
+                    {% else %}
+                        <!-- User actions -->
+                        <form method="POST" action="{% url 'reservess' place.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Reserve Spot</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

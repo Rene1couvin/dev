@@ -26,3 +26,32 @@ class Signup(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+
+
+class ParkingPlace(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Parking Place Name')
+    address = models.CharField(max_length=255, verbose_name='Address')
+    phone = models.IntegerField( verbose_name='Phone')
+    
+    
+    CONDITION_CHOICES = [
+        ('excellent', 'Excellent'),
+        ('good', 'Good'),
+        ('average', 'Average'),
+        ('poor', 'Poor')
+    ]
+    condition = models.CharField(max_length=20, choices=CONDITION_CHOICES, verbose_name='Condition of the Parking Place')
+    
+    photo1 = models.ImageField(upload_to='parking_place_photos', verbose_name='Photo 1')
+    photo2 = models.ImageField(upload_to='parking_place_photos', verbose_name='Photo 2')
+    photo3 = models.ImageField(upload_to='parking_place_photos', verbose_name='Photo 3')
+    
+    def __str__(self):
+        return self.name
+
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    parking_place = models.ForeignKey(ParkingPlace, on_delete=models.CASCADE)
+    reserved_at = models.DateTimeField(auto_now_add=True)
+    

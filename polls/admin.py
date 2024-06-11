@@ -7,4 +7,5 @@ from .models import *
 
 admin.site.register(Signup)
 admin.site.register(User)
+admin.site.register(ParkingPlace)
 # admin.site.register(Ofset)    

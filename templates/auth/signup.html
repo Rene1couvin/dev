@@ -8,7 +8,18 @@
     <title>Signup</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        body,
+        .body{
+           
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+        
+        }
+        form{
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            padding: 2px;
+
+
+        }
+
         html {
             height: 100%;
         }
@@ -22,13 +33,13 @@
     </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="body">
     
     <div class="flex-center">
         <div class="w-full sm:w-4/5 md:w-3/5 lg:w-2/5 xl:w-2/5">
-            <div class="container py-8 px-4">
-                <h1 class="text-2xl font-semibold mb-4">Signup</h1>
-                <form  id="SignupForm" method="post" action="{% url 'signup' %}"  class="space-y-4">
+            <div class="container  px-4">
+                <h1 class="text-2xl text-center font-semibold mb-4">Signup</h1>
+                <form  id="SignupForm" method="post" action="{% url 'signup' %}"  class="px-2 rounded-xl">
                     {% csrf_token %}
                     <div class="space-y-2">
                         <div class="flex flex-wrap -mx-2">
@@ -93,10 +104,14 @@
                             <p id="passwordError" class="text-red-500 text-sm hidden">Passwords do not match.</p>
                         </div>
                     </div>
-                    <div id="finalSection" class="h  ">
+                    <div id="finalSection" class="py-2 flex space-x-4">
                         <button type="submit" id="submitBtn"
-                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full">Submit</button>
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-1/2">Submit</button>
+                        <button type="reset" id="submitBtn"
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-1/2">Cancel</button>
                     </div>
+                    <p class="text-gray-600 text-center text-sm">Don't have an account? <a href="{% url 'login' %}"
+                        class="text-blue-500 hover:underline">login</a></p>
                 </form>
             </div>
         </div>
@@ -120,6 +135,11 @@
                 e.preventDefault();
                 passwordError.classList.remove('hidden');
             }
+        });
+        document.querySelector('a[href="##"]').addEventListener('click', function (event) {
+            event.preventDefault();
+            // Replace '#' with the actual URL of your sign-up page
+            window.location.href = 'login/';
         });
     </script>
 </body>

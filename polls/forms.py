@@ -1,7 +1,8 @@
 # polls/forms.py
 
 from django import forms
-from .models import User
+from .models import User, Reservation, ParkingPlace
+
 
 class SignupForm(forms.ModelForm):
     class Meta:
@@ -24,3 +25,11 @@ class AuthenticationForm(AuthenticationForm):
         label=_("Password"),
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
     )
+class ParkingPlaceForm(forms.ModelForm):
+    class Meta:
+        model = ParkingPlace
+        fields = ['name', 'address', 'phone', 'condition', 'photo1', 'photo2', 'photo3']
+class ReservationForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = []

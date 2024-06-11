@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parking Service Selection</title>
-
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .center {
@@ -17,47 +16,55 @@
     </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 justify-center">
     <nav class="bg-blue-500 p-4 text-white">
         <!-- Navigation content -->
     </nav>
 
     <div class="center">
-        <div class="container mx-auto p-6 bg-white rounded-lg shadow-lg">
-            <h1 class="text-3xl font-bold mb-6 text-center">Select Parking Service</h1>
-            <form id="parkingForm" class="space-y-4">
-                <div class="mb-4">
-                    <label for="province" class="block text-gray-700 font-bold mb-2">Province:</label>
-                    <select id="province" class="block w-full bg-white border border-gray-300 rounded py-2 px-4">
-                        <option value="">Select Province</option>
-                        <option value="Kigali">Kigali</option>
-                        <option value="Southern">Southern</option>
-                        <option value="Western">Western</option>
-                        <option value="Northern">Northern</option>
-                        <option value="Eastern">Eastern</option>
-                    </select>
+        <div class="container mx-auto p-6 bg-white rounded-lg shadow-lg items-center justify-center ">
+            <h1 class="text-3xl font-bold mb-6 text-center">Reserve Parking Service</h1>
+            <form id="parkingForm" class="space-y-8 w-1/2 align-items">
+                <div class="w-full flex">
+                    <div class="mb-4 w-1/2 px-4">
+                        <label for="province" class="block text-gray-700 font-bold mb-2">Province:</label>
+                        <select id="province" class="block w-full bg-white border border-gray-300 rounded py-2 px-4">
+                            <option value="">Select Province</option>
+                            <option value="Kigali">Kigali</option>
+                            <option value="Southern">Southern</option>
+                            <option value="Western">Western</option>
+                            <option value="Northern">Northern</option>
+                            <option value="Eastern">Eastern</option>
+                        </select>
+                    </div>
+                    <div class="mb-4 w-1/2 px-4">
+                        <label for="district" class="block text-gray-700 font-bold mb-2">District:</label>
+                        <select id="district" class="block w-full bg-white border border-gray-300 rounded py-2 px-4"
+                            disabled>
+                            <option value="">Select District</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="district" class="block text-gray-700 font-bold mb-2">District:</label>
-                    <select id="district" class="block w-full bg-white border border-gray-300 rounded py-2 px-4" disabled>
-                        <option value="">Select District</option>
-                    </select>
+                <div class="w-full flex">
+                    <div class="mb-4 px-4 w-1/2">
+                        <label for="sector" class="block text-gray-700 font-bold mb-2">Sector:</label>
+                        <select id="sector" class="block w-full bg-white border border-gray-300 rounded py-2 px-4"
+                            disabled>
+                            <option value="">Select Sector</option>
+                        </select>
+                    </div>
+                    <div class="mb-4 px-4 w-1/2">
+                        <label for="parkingService" class="block text-gray-700 font-bold mb-2">Parking Service:</label>
+                        <select id="parkingService"
+                            class="block w-full bg-white border border-gray-300 rounded py-2 px-4">
+                            <option value="">Select Parking Service</option>
+                            <option value="Standard Parking">Standard Parking</option>
+                            <option value="VIP Parking">VIP Parking</option>
+                            <option value="Handicapped Parking">Handicapped Parking</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="sector" class="block text-gray-700 font-bold mb-2">Sector:</label>
-                    <select id="sector" class="block w-full bg-white border border-gray-300 rounded py-2 px-4" disabled>
-                        <option value="">Select Sector</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label for="parkingService" class="block text-gray-700 font-bold mb-2">Parking Service:</label>
-                    <select id="parkingService" class="block w-full bg-white border border-gray-300 rounded py-2 px-4" disabled>
-                        <option value="">Select Parking Service</option>
-                        <option value="Standard Parking">Standard Parking</option>
-                        <option value="VIP Parking">VIP Parking</option>
-                        <option value="Handicapped Parking">Handicapped Parking</option>
-                    </select>
-                </div>
+
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2">Parking Duration:</label>
                     <div>
@@ -78,6 +85,38 @@
                 <div class="mb-4">
                     <label for="price" class="block text-gray-700 font-bold mb-2">Price:</label>
                     <span id="price" class="text-gray-700">Please select a duration</span>
+                </div>
+                <div class="mb-4">
+                    <label for="paymentMethod" class="block text-gray-700 font-bold mb-2">Payment Method:</label>
+                    <select id="paymentMethod" class="block w-full bg-white border border-gray-300 rounded py-2 px-4">
+                        <option value="">Select Payment Method</option>
+                        <option value="card">Card</option>
+                        <option value="mobile">Mobile</option>
+                    </select>
+                </div>
+                <div id="cardDetails" class="mb-4 hidden">
+                    <label for="cardNumber" class="block text-gray-700 font-bold mb-2">Card Number:</label>
+                    <input type="text" id="cardNumber"
+                        class="block w-full bg-white border border-gray-300 rounded py-2 px-4 mb-2">
+                    <label for="expiryDate" class="block text-gray-700 font-bold mb-2">Expiry Date:</label>
+                    <input type="text" id="expiryDate"
+                        class="block w-full bg-white border border-gray-300 rounded py-2 px-4 mb-2">
+                    <label for="cvv" class="block text-gray-700 font-bold mb-2">CVV:</label>
+                    <input type="text" id="cvv" class="block w-full bg-white border border-gray-300 rounded py-2 px-4">
+                </div>
+                <div id="mobileDetails" class="mb-4 hidden">
+                    <label for="mobileProvider" class="block text-gray-700 font-bold mb-2">Mobile Provider:</label>
+                    <select id="mobileProvider" class="block w-full bg-white border border-gray-300 rounded py-2 px-4">
+                        <option value="">Select Mobile Provider</option>
+                        <option value="MTN">MTN</option>
+                        <option value="Airtel">Airtel</option>
+                    </select>
+                    <div id="mtnPayment" class="mt-4 hidden">
+                        <p class="text-gray-700">To pay, dial <span id="mtnUSSD"></span></p>
+                    </div>
+                    <div id="airtelPayment" class="mt-4 hidden">
+                        <p class="text-gray-700">To pay, dial <span id="airtelUSSD"></span></p>
+                    </div>
                 </div>
                 <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded mt-4 w-full">Submit</button>
             </form>
@@ -101,34 +140,7 @@
             const sectors = {
                 Gasabo: ["Bumbogo", "Gatsata", "Gikomero", "Gisozi", "Jabana", "Jali", "Kacyiru", "Kimihurura", "Kimironko", "Kinyinya", "Ndera", "Nduba", "Remera", "Rusororo", "Rutunga"],
                 Kicukiro: ["Gahanga", "Gatenga", "Gikondo", "Kagarama", "Kanombe", "Kicukiro", "Kigarama", "Masaka", "Niboye", "Nyarugunga"],
-                Nyarugenge: ["Gitega", "Kanyinya", "Kigali", "Kimisagara", "Mageragere", "Muhima", "Nyakabanda", "Nyamirambo", "Nyarugenge", "Rwezamenyo"],
-                Bugesera: ["Gashora", "Juru", "Kamabuye", "Ngeruka", "Ntarama", "Nyarugenge", "Nzige", "Rilima", "Ruhuha"],
-                Gatsibo: ["Gasange", "Gatsibo", "Kabarore", "Kageyo", "Kiramuruzi", "Kiziguro", "Muhura", "Murambi", "Ngarama", "Remera"],
-                Kayonza: ["Gahini", "Kabare", "Kabarondo", "Mukarange", "Murama", "Murundi", "Mwiri", "Ndego", "Nyamirama", "Rukara"],
-                Kirehe: ["Gatore", "Kigarama", "Kirehe", "Mahama", "Mpanga", "Musaza", "Nasho", "Nyamugali", "Nyarubuye", "Nyarutovu"],
-                Ngoma: ["Kazo", "Kibungo", "Mugesera", "Murama", "Mutenderi", "Ngera", "Ngoma", "Rukira", "Rurenge", "Sake"],
-                Nyagatare: ["Gatunda", "Karangazi", "Katabagemu", "Kiyombe", "Matimba", "Mimuli", "MucundanzI", "Musheli", "Nyagatare", "Rukomo"],
-                Rwamagana: ["Gahengeri", "Kabare", "Kigabiro", "Muhazi", "Munyiginya", "Ntunga", "Rubona", "Rukira", "Rwamagana", "Rwimbogo"],
-                Burera: ["Bungwe", "Butaro", "Cyanika", "Cyeru", "Gahunga", "Gatebe", "Gitovu", "Kagogo", "Kinoni", "Kinyababa", "Kivuye", "Nemba", "Rugarama", "Rugengabari", "Ruhunde", "Rusarabuye"],
-                Gakenke: ["Busengo", "Coko", "Cyabingo", "Gakenke", "Gashenyi", "Janji", "Kamubuga", "Karambo", "Kivuruga", "Mataba", "Mugunga", "Muhondo", "Muyongwe", "Muzo", "Nemba", "Ruli", "Rusasa", "Rushashi"],
-                Gicumbi: ["Bukure", "Bwisige", "Byumba", "Cyumba", "Giti", "Kageyo", "Kaniga", "Manyagiro", "Miyove", "Mukarange", "Muko", "Mutete", "Nyamiyaga", "Nyankenke", "Rubaya", "Rukomo", "Rushaki", "Rutare", "Ruvune", "Rwamiko"],
-                Musanze: ["Busogo", "Cyuve", "Gacaca", "Gashaki", "Kimonyi", "Kinigi", "Musanze", "Muhoza", "Nkotsi", "Nyange", "Remera", "Rwaza", "Shingiro"],
-                Rulindo: ["Base", "Burega", "Bushoki", "Buyoga", "Cyinzuzi", "Cyungo", "Kinihira", "Kisaro", "Masoro", "Mbogo", "Murambi", "Ntarabana", "Rukozo", "Rusiga", "Shyorongi", "Tumba"],
-                Karongi: ["Bwishyura", "Gitesi", "Gishyita", "Gashari", "Murundi", "Mutuntu", "Murambi", "Rugabano", "Rubengera", "Ruganda", "Rutsiro", "Twumba"],
-                Ngororero: ["Bwira", "Gatumba", "Hindiro", "Kabaya", "Kageyo", "Kavumu", "Matyazo", "Muhanda", "Muhororo", "Ndaro", "Ngororero", "Nyange", "Sovu"],
-                Nyabihu: ["Bigogwe", "Jenda", "Jomba", "Karago", "Kintobo", "Mukamira", "Muringa", "Rambura", "Rugera", "Rurembo", "Shyira"],
-                Nyamasheke: ["Bushekeri", "Bushenge", "Cyato", "Gihombo", "Kagano", "Kanjongo", "Karambi", "Karengera", "Kirimbi", "Macuba", "Mahembe", "Nyabitekeri", "Rangiro", "Ruharambuga", "Shangi"],
-                Rubavu: ["Bugeshi", "Busasamana", "Cyanzarwe", "Gisenyi", "Kanama", "Kanzenze", "Mudende", "Nyakiliba", "Nyamyumba", "Nyundo", "Rubavu", "Rugerero"],
-                Rusizi: ["Bugarama", "Butare", "Bweyeye", "Gashonga", "Giheke", "Gihundwe", "Gikundamvura", "Gitambi", "Kamembe", "Muganza", "Mururu", "Nkanka", "Nkombo", "Nkungu", "Nyakabuye"],
-                Rutsiro: ["Boneza", "Gihango", "Kigeyo", "Kivumu", "Manihira", "Mushonyi", "Mukura", "Murunda", "Musasa", "Mushubati", "Nyabirasi", "Ruhango", "Rusebeya"],
-                Huye : ["Butare", "Gishamvu", "Huye", "Karama", "Maraba", "Mbazi", "Ngoma", "Ruhashya", "Tumba"],
-                Kamonyi : ["Kamonyi", "Kayenzi", "Mugina", "Musambira", "Runda"],
-                Muhanga : ["Cyeza", "Kabacuzi", "Kiyumba", "Muhanga", "Nyabinoni", "Rongi"],
-                Nyamagabe : ["Kaduha", "Kibirizi", "Kibumbwe", "Kitabi", "Mukoma", "Mukingo", "Nyagisozi", "Ruheru", "Rusenge", "Tare"],
-                Nyanza : ["Busasamana", "Busoro", "Kibirizi", "Kigoma", "Mukingo", "Nyagisozi", "Rusatira", "Shyogwe"],
-                Nyaruguru : ["Buhanda", "Cyahinda", "Kibeho", "Kivu", "Ngera", "Nyabimata", "Nyaruguru"],
-                Ruhango : ["Bweramana", "Kinihira", "Kinazi", "Kinihira", "Mbuye", "Ntongwe", "Ruhango", "Shyanda Sector"],
-                Gisagara : [" Gikonko", "Gishubi", "Kansi", "Kibilizi", "Kigembe", "Mamba", "Muganza", "Mugombwa", "Mukindo", "Musha", "Ndora", "Nyanza", "Save"]
+                Nyarugenge: ["Gitega", "Kanyinya", "Kigali", "Kimisagara", "Mageregere", "Mageragere", "Muhima", "Nyakabanda", "Nyamirambo", "Nyarugenge", "Rwezamenyo"]
             };
 
             const priceTable = {
@@ -158,67 +170,77 @@
                 }
             };
 
-            const provinceSelect = document.getElementById('province');
-            const districtSelect = document.getElementById('district');
-            const sectorSelect = document.getElementById('sector');
-            const parkingServiceSelect = document.getElementById('parkingService');
-            const durationRadios = document.querySelectorAll('input[name="duration"]');
-            const priceSpan = document.getElementById('price');
+            document.getElementById('province').addEventListener('change', function () {
+                const province = this.value;
+                const districtSelect = document.getElementById('district');
+                districtSelect.disabled = !province;
 
-            function populateDropdown(selectElement, options) {
-                selectElement.innerHTML = '<option value="">Select</option>';
-                for (let option of options) {
-                    const optionElement = document.createElement('option');
-                    optionElement.value = option;
-                    optionElement.textContent = option;
-                    selectElement.appendChild(optionElement);
+                districtSelect.innerHTML = '<option value="">Select District</option>';
+                if (districts[province]) {
+                    districts[province].forEach(district => {
+                        const option = document.createElement('option');
+                        option.value = district;
+                        option.textContent = district;
+                        districtSelect.appendChild(option);
+                    });
                 }
-            }
+            });
 
-            provinceSelect.addEventListener('change', function () {
-                const selectedProvince = this.value;
-                const districtsInProvince = districts[selectedProvince];
-                populateDropdown(districtSelect, districtsInProvince);
-                districtSelect.disabled = !districtsInProvince;
-                sectorSelect.disabled = true;
-                parkingServiceSelect.disabled = true;
+            document.getElementById('district').addEventListener('change', function () {
+                const district = this.value;
+                const sectorSelect = document.getElementById('sector');
+                sectorSelect.disabled = !district;
+
                 sectorSelect.innerHTML = '<option value="">Select Sector</option>';
-                priceSpan.textContent = 'Please select a duration';
+                if (sectors[district]) {
+                    sectors[district].forEach(sector => {
+                        const option = document.createElement('option');
+                        option.value = sector;
+                        option.textContent = sector;
+                        sectorSelect.appendChild(option);
+                    });
+                }
             });
 
-            districtSelect.addEventListener('change', function () {
-                const selectedDistrict = this.value;
-                const sectorsInDistrict = sectors[selectedDistrict];
-                populateDropdown(sectorSelect, sectorsInDistrict);
-                sectorSelect.disabled = !sectorsInDistrict;
-                parkingServiceSelect.disabled = !sectorsInDistrict;
-                priceSpan.textContent = 'Please select a duration';
-            });
-
-            parkingServiceSelect.addEventListener('change', function () {
-                updatePrice();
-            });
-
-            durationRadios.forEach(radio => {
-                radio.addEventListener('change', function () {
-                    updatePrice();
-                });
+            document.getElementById('parkingService').addEventListener('change', updatePrice);
+            document.querySelectorAll('input[name="duration"]').forEach(input => {
+                input.addEventListener('change', updatePrice);
             });
 
             function updatePrice() {
-                const selectedParkingService = parkingServiceSelect.value;
-                const selectedDuration = document.querySelector('input[name="duration"]:checked');
-                if (selectedParkingService && selectedDuration) {
-                    const price = priceTable[selectedParkingService][selectedDuration.value];
-                    priceSpan.textContent = `Price: ${price} RWF`;
-                } else {
-                    priceSpan.textContent = 'Please select a duration';
-                }
+                const parkingService = document.getElementById('parkingService').value;
+                const duration = document.querySelector('input[name="duration"]:checked')?.value;
+                const price = parkingService && duration ? priceTable[parkingService][duration] : 'Please select a duration and service';
+                document.getElementById('price').textContent = price;
             }
 
-            districtSelect.disabled = true;
-            sectorSelect.disabled = true;
-            parkingServiceSelect.disabled = true;
+            document.getElementById('paymentMethod').addEventListener('change', function () {
+                const paymentMethod = this.value;
+                document.getElementById('cardDetails').classList.toggle('hidden', paymentMethod !== 'card');
+                document.getElementById('mobileDetails').classList.toggle('hidden', paymentMethod !== 'mobile');
+            });
+
+            document.getElementById('mobileProvider').addEventListener('change', function () {
+                const provider = this.value;
+                const duration = document.querySelector('input[name="duration"]:checked')?.value;
+                const parkingService = document.getElementById('parkingService').value;
+                const price = parkingService && duration ? priceTable[parkingService][duration] : null;
+
+                const mtnPayment = document.getElementById('mtnPayment');
+                const airtelPayment = document.getElementById('airtelPayment');
+
+                mtnPayment.classList.toggle('hidden', provider !== 'MTN');
+                airtelPayment.classList.toggle('hidden', provider !== 'Airtel');
+
+                if (provider === 'MTN' && price) {
+                    document.getElementById('mtnUSSD').textContent = `*182*8*1*1199656*${price}#`;
+                } else if (provider === 'Airtel' && price) {
+                    document.getElementById('airtelUSSD').textContent = `*182*8*1*232603*${price}#`;
+                }
+            }); j
+            document.getElementById('parkingForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+            });
         });
     </script>
 </body>
